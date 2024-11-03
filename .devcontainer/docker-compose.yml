@@ -1,0 +1,29 @@
+version: '3.8'
+
+volumes:
+    mysql-data:
+
+services:
+    app:
+        container_name: java
+        build:
+            context: .
+            dockerfile: Dockerfile
+            
+        volumes:
+            - ../..:/workspaces:cached
+
+        # デフォルトのコマンドをオーバーライドし、プロセスが終了しないようにする
+        command: sleep infinity
+
+        # アプリがデータベースコンテナと同じネットワークで実行されるようにする
+        network_mode: service:db
+
+    db:
+        container_name: mysql
+        image: mysql:latest
+        restart: unless-stopped
+        volumes:
+            - mysql-data:/var/lib/mysql
+        env_file:
+            - .env

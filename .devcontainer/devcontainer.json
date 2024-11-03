@@ -1,0 +1,42 @@
+{
+    "name": "spring-template",
+    "dockerComposeFile": "docker-compose.yml",
+    "init": true,
+    "service": "app",
+    "workspaceFolder": "/workspaces/${localWorkspaceFolderBasename}",
+    "forwardPorts": [
+        8080,
+        3306
+    ],
+    "customizations": {
+        "vscode": {
+            "settings": {
+                // null解析のモード
+                "java.compile.nullAnalysis.mode": "automatic",
+                // フォーマットスタイル 
+                "java.format.settings.profile": "GoogleStyle",
+                "java.format.settings.url": "https://raw.githubusercontent.com/google/styleguide/gh-pages/eclipse-java-google-style.xml",
+                // Gradle拡張機能が用意する「gradle-wrapper.properties」ファイルからgradleを使用
+                "java.import.gradle.wrapper.enabled": false,
+                // Java言語サーバーの起動に使用するJDKのフォルダ
+                "java.jdt.ls.java.home": "/root/.sdkman/candidates/java/current",
+                // Maven wrapperの使用を希望するかどうか
+                "maven.executable.preferMavenWrapper": false,
+                // テレメトリ
+                "redhat.telemetry.enabled": false,
+                "[java]": {
+                    // Java フォーマッター
+                    "editor.defaultFormatter": "redhat.java",
+                    "editor.formatOnPaste": true,
+                    "editor.formatOnSave": true
+                }
+            },
+            "extensions": [
+                "vscjava.vscode-java-pack",
+                "vmware.vscode-boot-dev-pack",
+                "vscjava.vscode-gradle",
+                "cweijan.vscode-database-client2"
+            ]
+        }
+    }
+}
